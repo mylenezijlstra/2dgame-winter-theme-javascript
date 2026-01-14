@@ -1,0 +1,30 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+#slots {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.slot {
+  width: 200px;
+  height: 150px;
+  border: 2px dashed #999;
+}
+
+.card {
+  padding: 10px;
+  border: 1px solid #333;
+  width: 120px;
+  margin: 5px;
+  cursor: grab;
+  background: #eee;
+}
+
+#scenarios, #characters {
+  display: flex;
+  gap: 10px;
+}

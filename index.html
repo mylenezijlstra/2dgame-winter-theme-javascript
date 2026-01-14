@@ -1,13 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Story Teller</title>
+  <meta charset="UTF-8">
+  <title>Storyteller - A Heartbreak is Healed</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
-    <script src="assets/js/app.js" defer></script>
+
+  <h1>A Heartbreak is Healed</h1>
+
+  <!-- Verhaalslots -->
+  <div id="slots">
+    <div class="slot" data-slot="1"></div>
+    <div class="slot" data-slot="2"></div>
+    <div class="slot" data-slot="3"></div>
+  </div>
+
+  <!-- Scenario's -->
+  <h2>Scenarios</h2>
+  <div id="scenarios">
+    <div class="card scenario" draggable="true" data-type="wedding">
+      Wedding
+    </div>
+  </div>
+
+  <!-- Personages -->
+  <h2>Characters</h2>
+  <div id="characters">
+    <div class="card character" draggable="true" data-name="edgar">Edgar</div>
+    <div class="card character" draggable="true" data-name="lenora">Lenora</div>
+    <div class="card character" draggable="true" data-name="bernard">Bernard</div>
+    <div class="card character" draggable="true" data-name="isobel">Isobel</div>
+  </div>
+
+  <script src="assets/js/app.js" defer></script>
 </body>
 </html>

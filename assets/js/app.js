@@ -2,34 +2,46 @@ let draggedItem = null;
 let draggedType = null;
 
 /* =====================
-   DRAG START
+   DRAG START (delegated)
 ===================== */
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('dragstart', () => {
-    draggedItem = card;
-    draggedType = card.classList.contains('scenario')
-      ? 'scenario'
-      : 'character';
-  });
+document.addEventListener('dragstart', e => {
+  const el = e.target.closest('.card, .scene-instance, .character-instance');
+  if (!el) return;
+
+  draggedItem = el;
+
+  if (el.classList.contains('scenario') || el.classList.contains('scene-instance')) {
+    draggedType = 'scene';
+  } else {
+    draggedType = 'character';
+  }
 });
 
 /* =====================
-   SCENE NAAR SLOT
+   SLOTS (scenes)
 ===================== */
 document.querySelectorAll('.slot').forEach(slot => {
   slot.addEventListener('dragover', e => e.preventDefault());
 
   slot.addEventListener('drop', () => {
-    if (draggedType !== 'scenario') return;
+    if (draggedType !== 'scene') return;
 
-    const scene = draggedItem.cloneNode(true);
-    scene.classList.add('scene-instance');
-    scene.removeAttribute('draggable');
+    let scene;
+
+    if (draggedItem.classList.contains('scene-instance')) {
+      // verplaatsen
+      scene = draggedItem;
+      scene.parentElement.innerHTML = '';
+    } else {
+      // clone van template
+      scene = draggedItem.cloneNode(true);
+      scene.classList.add('scene-instance');
+      scene.removeAttribute('draggable');
+      enableScene(scene);
+    }
 
     slot.innerHTML = '';
     slot.appendChild(scene);
-
-    enableScene(scene);
     checkStory();
   });
 });
@@ -46,9 +58,19 @@ function enableScene(scene) {
     const emptySlot = scene.querySelector('.person-slot:empty');
     if (!emptySlot) return;
 
-    const character = draggedItem.cloneNode(true);
-    character.classList.add('character-instance');
-    character.removeAttribute('draggable');
+    let character;
+
+    if (draggedItem.classList.contains('character-instance')) {
+      // verplaatsen
+      character = draggedItem;
+      character.parentElement.innerHTML = '';
+    } else {
+      // clone
+      character = draggedItem.cloneNode(true);
+      character.classList.remove('character');
+      character.classList.add('character-instance');
+      enableCharacter(character);
+    }
 
     emptySlot.appendChild(character);
     checkStory();
@@ -56,12 +78,49 @@ function enableScene(scene) {
 }
 
 /* =====================
+   CHARACTER INSTANCE
+===================== */
+function enableCharacter(character) {
+  character.setAttribute('draggable', 'true');
+
+  character.addEventListener('dragstart', () => {
+    draggedItem = character;
+    draggedType = 'character';
+  });
+}
+
+/* =====================
+   CHARACTER BALK (verwijderen)
+===================== */
+const characterBar = document.getElementById('characters');
+characterBar.addEventListener('dragover', e => e.preventDefault());
+characterBar.addEventListener('drop', () => {
+  if (draggedItem?.classList.contains('character-instance')) {
+    draggedItem.parentElement.innerHTML = '';
+    checkStory();
+  }
+});
+
+/* =====================
+   SCENARIO BALK (verwijderen)
+===================== */
+const scenarioBar = document.getElementById('scenarios');
+scenarioBar.addEventListener('dragover', e => e.preventDefault());
+scenarioBar.addEventListener('drop', () => {
+  if (draggedItem?.classList.contains('scene-instance')) {
+    draggedItem.parentElement.innerHTML = '';
+    checkStory();
+  }
+});
+
+/* =====================
    STORY CHECK
 ===================== */
 function checkStory() {
-  const slots = document.querySelectorAll('.slot');
+  document.querySelectorAll('.scene-instance')
+    .forEach(scene => scene.classList.remove('success', 'fail'));
 
-  slots.forEach((slot, index) => {
+  document.querySelectorAll('.slot').forEach((slot, index) => {
     const scene = slot.querySelector('.scene-instance');
     if (!scene) return;
 
@@ -69,35 +128,17 @@ function checkStory() {
     if (chars.length < 2) return;
 
     const names = [...chars].map(c => c.dataset.name);
-    const title = scene.querySelector('.title');
 
-    title.textContent = 'Wedding';
-
-    // Scene 1: Edgar + Lenora
-    if (
-      index === 0 &&
-      names.includes('edgar') &&
-      names.includes('lenora')
-    ) {
-      title.textContent = 'Wedding ❤️';
+    if (index === 0 && names.includes('edgar') && names.includes('lenora')) {
+      scene.classList.add('success');
     }
 
-    // Scene 2: Bernard + Lenora
-    if (
-      index === 1 &&
-      names.includes('bernard') &&
-      names.includes('lenora')
-    ) {
-      title.textContent = 'Rejected 💔';
+    if (index === 1 && names.includes('bernard') && names.includes('lenora')) {
+      scene.classList.add('fail');
     }
 
-    // Scene 3: Edgar + Isobel
-    if (
-      index === 2 &&
-      names.includes('edgar') &&
-      names.includes('isobel')
-    ) {
-      title.textContent = 'Love Healed ❤️';
+    if (index === 2 && names.includes('edgar') && names.includes('isobel')) {
+      scene.classList.add('success');
     }
   });
 }

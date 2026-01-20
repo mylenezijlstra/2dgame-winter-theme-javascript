@@ -6,6 +6,12 @@ https://trello.com/b/hbxhJDvH/2d-game-module-62
 
 # Feedback-notities
 
+- feedback van klasgenoten 
+
+
+
+
+
 - standup 
 
 maandag 12 januari: 

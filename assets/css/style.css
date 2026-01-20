@@ -96,11 +96,3 @@ body {
   color: white;
   text-shadow: 0 0 2px black;
 }
-
-.scene-instance.success {
-  outline: 4px solid #4caf50;
-}
-
-.scene-instance.fail {
-  outline: 4px solid #f44336;
-}

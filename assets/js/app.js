@@ -1,5 +1,6 @@
 let draggedItem = null;
 let draggedType = null;
+let solvedShown = false;
 
 /* =====================
    DRAG START (delegated)
@@ -18,7 +19,7 @@ document.addEventListener('dragstart', e => {
 });
 
 /* =====================
-   SLOTS (scenes)
+   SLOTS (scenes plaatsen)
 ===================== */
 document.querySelectorAll('.slot').forEach(slot => {
   slot.addEventListener('dragover', e => e.preventDefault());
@@ -29,11 +30,11 @@ document.querySelectorAll('.slot').forEach(slot => {
     let scene;
 
     if (draggedItem.classList.contains('scene-instance')) {
-      // verplaatsen
+      // scene verplaatsen
       scene = draggedItem;
       scene.parentElement.innerHTML = '';
     } else {
-      // clone van template
+      // scene clonen vanuit balk
       scene = draggedItem.cloneNode(true);
       scene.classList.add('scene-instance');
       scene.removeAttribute('draggable');
@@ -61,11 +62,11 @@ function enableScene(scene) {
     let character;
 
     if (draggedItem.classList.contains('character-instance')) {
-      // verplaatsen
+      // character verplaatsen
       character = draggedItem;
       character.parentElement.innerHTML = '';
     } else {
-      // clone
+      // character clonen vanuit balk
       character = draggedItem.cloneNode(true);
       character.classList.remove('character');
       character.classList.add('character-instance');
@@ -90,7 +91,7 @@ function enableCharacter(character) {
 }
 
 /* =====================
-   CHARACTER BALK (verwijderen)
+   CHARACTER BALK = VERWIJDEREN
 ===================== */
 const characterBar = document.getElementById('characters');
 characterBar.addEventListener('dragover', e => e.preventDefault());
@@ -102,7 +103,7 @@ characterBar.addEventListener('drop', () => {
 });
 
 /* =====================
-   SCENARIO BALK (verwijderen)
+   SCENARIO BALK = VERWIJDEREN
 ===================== */
 const scenarioBar = document.getElementById('scenarios');
 scenarioBar.addEventListener('dragover', e => e.preventDefault());
@@ -114,31 +115,51 @@ scenarioBar.addEventListener('drop', () => {
 });
 
 /* =====================
-   STORY CHECK
+   LEVEL CHECK (8 oplossingen)
 ===================== */
 function checkStory() {
-  document.querySelectorAll('.scene-instance')
-    .forEach(scene => scene.classList.remove('success', 'fail'));
+  const slots = document.querySelectorAll('.slot');
+  const currentSolution = [];
 
-  document.querySelectorAll('.slot').forEach((slot, index) => {
+  for (let slot of slots) {
     const scene = slot.querySelector('.scene-instance');
     if (!scene) return;
 
     const chars = scene.querySelectorAll('.character-instance');
-    if (chars.length < 2) return;
+    if (chars.length !== 2) return;
 
-    const names = [...chars].map(c => c.dataset.name);
+    const names = [...chars]
+      .map(c => c.dataset.name)
+      .sort();
 
-    if (index === 0 && names.includes('edgar') && names.includes('lenora')) {
-      scene.classList.add('success');
-    }
+    currentSolution.push(names.join('+'));
+  }
 
-    if (index === 1 && names.includes('bernard') && names.includes('lenora')) {
-      scene.classList.add('fail');
-    }
+  const validSolutions = [
+    ['edgar+lenora', 'edgar+isobel', 'bernard+isobel'],
+    ['edgar+lenora', 'bernard+lenora', 'bernard+isobel'],
+    ['edgar+isobel', 'edgar+lenora', 'bernard+lenora'],
+    ['edgar+isobel', 'bernard+isobel', 'bernard+lenora'],
+    ['bernard+lenora', 'bernard+isobel', 'edgar+isobel'],
+    ['bernard+lenora', 'edgar+lenora', 'edgar+isobel'],
+    ['bernard+isobel', 'bernard+lenora', 'edgar+lenora'],
+    ['bernard+isobel', 'edgar+isobel', 'edgar+lenora']
+  ].map(solution =>
+    solution.map(pair => pair.split('+').sort().join('+'))
+  );
 
-    if (index === 2 && names.includes('edgar') && names.includes('isobel')) {
-      scene.classList.add('success');
-    }
-  });
+  const solved = validSolutions.some(solution =>
+    solution.every((pair, index) => pair === currentSolution[index])
+  );
+
+  if (solved) showSolvedMessage();
+}
+
+/* =====================
+   MELDING
+===================== */
+function showSolvedMessage() {
+  if (solvedShown) return;
+  solvedShown = true;
+  alert('🎉 Level 1 opgelost!');
 }

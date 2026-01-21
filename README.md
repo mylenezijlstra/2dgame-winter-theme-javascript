@@ -6,6 +6,11 @@ https://trello.com/b/hbxhJDvH/2d-game-module-62
 
 # Feedback-notities
 
+- feedback van klasgenoten verwerkt 
+
+# alle 8 de oplossingen erin zetten
+
+
 - standup 
 
 maandag 12 januari: 
@@ -42,4 +47,10 @@ maandag 19 januari:
 gedaan: mappenstructuur afgemaakt, gezorgd dat je 3 vakken hebt waar je de scenario al in kan slepen. deze kan je ook verplaatsen naar andere vakken. 
 liep vast op: als ik scenario verplaatst gaat deze helemaal weg. deze moet blijven staan maar hier had ik nog geen tijd voor. 
 Ga doen: wil eigenlijk het gehele eerste spelletje af hebben. hoeft niet mooi te zijn maar wel werkend. 
-gedaan:
+gedaan: plaatjes van scene erin gezet en afbeeldingen van personages. gezorgd dat je alle personages kan verplaatsen en verwijderen. ook de scenarios kan je weghalen nadat je deze geplaatst hebt. feedback gegeven en gevraagt. 
+
+dinsdag 20 januari: 
+gedaan: plaatjes van scene erin gezet en afbeeldingen van personages. gezorgd dat je alle personages kan verplaatsen en verwijderen. ook de scenarios kan je weghalen nadat je deze geplaatst hebt. feedback gegeven en gevraagt.  
+liep vast op: kwam er achter dat er meerdere oplossingen zijn. dus het was heel lasting om de juiste uit de 8 oplossingen te vinden.  
+Ga doen: alle oplossingen erin zetten. winter thema bedenken en erin verwerken. 
+gedaan: 

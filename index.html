@@ -2,51 +2,101 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Storyteller - A Heartbreak is Healed</title>
+  <title>Storyteller Intro</title>
+
+  <!-- Oud boek lettertype -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<h1>A Heartbreak is Healed</h1>
+<!-- ========================= -->
+<!--  BOEK PAGINA 1            -->
+<!-- ========================= -->
 
-<div id="slots">
-  <div class="slot"></div>
-  <div class="slot"></div>
-  <div class="slot"></div>
+<div id="page1" class="book-screen">
+  <img src="assets/img/boekvoorkant.png" class="book-img">
 </div>
 
-<h2>Scenarios</h2>
-<div id="scenarios">
-  <div class="card scenario" draggable="true" data-type="wedding">
-    <img src="assets/img/wedding.png">
-    <div class="people">
-      <div class="person-slot"></div>
-      <div class="person-slot"></div>
+<!-- ========================= -->
+<!--  BOEK PAGINA 2            -->
+<!-- ========================= -->
+
+<div id="page2" class="book-screen hidden">
+  <img src="assets/img/boek.png" class="book-img">
+</div>
+
+<!-- ========================= -->
+<!--  BOEK PAGINA 3 (uitleg)   -->
+<!-- ========================= -->
+
+<div id="page3" class="book-screen hidden">
+  <img src="assets/img/boekscene.png" class="book-img">
+  <div class="text-overlay">
+    <h2>Hoe werkt het?</h2>
+    <p>Sleep scènes en personages om het verhaal te maken.</p>
+    <p>Klik om verder te gaan</p>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  BOEK PAGINA 4 (titel)    -->
+<!-- ========================= -->
+
+<div id="page4" class="book-screen hidden">
+  <img src="assets/img/boekscene.png" class="book-img">
+  <div class="text-overlay">
+    <h1><a id="startGame" href="#">A Heartbreak is Healed</a></h1>
+  </div>
+</div>
+
+<!-- ========================= -->
+<!--  GAME                     -->
+<!-- ========================= -->
+
+<div id="game" class="hidden">
+
+  <h1>A Heartbreak is Healed</h1>
+
+  <div id="slots">
+    <div class="slot"></div>
+    <div class="slot"></div>
+    <div class="slot"></div>
+  </div>
+
+  <div id="scenarios">
+    <div class="card scenario" draggable="true" data-type="wedding">
+      <img src="assets/img/wedding.png">
+      <div class="people">
+        <div class="person-slot"></div>
+        <div class="person-slot"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<h2>Characters</h2>
-<div id="characters">
-  <div class="card character" draggable="true" data-name="edgar">
-    <img src="assets/img/edgar.png">
-    <span class="name">Edgar</span>
+  <div id="characters">
+    <div class="card character" draggable="true" data-name="edgar">
+      <img src="assets/img/edgar.png">
+      <span class="name">Edgar</span>
+    </div>
+
+    <div class="card character" draggable="true" data-name="lenora">
+      <img src="assets/img/lenora.png">
+      <span class="name">Lenora</span>
+    </div>
+
+    <div class="card character" draggable="true" data-name="bernard">
+      <img src="assets/img/bernard.png">
+      <span class="name">Bernard</span>
+    </div>
+
+    <div class="card character" draggable="true" data-name="isobel">
+      <img src="assets/img/isobel.png">
+      <span class="name">Isobel</span>
+    </div>
   </div>
 
-  <div class="card character" draggable="true" data-name="lenora">
-    <img src="assets/img/lenora.png">
-    <span class="name">Lenora</span>
-  </div>
-
-  <div class="card character" draggable="true" data-name="bernard">
-    <img src="assets/img/bernard.png">
-    <span class="name">Bernard</span>
-  </div>
-
-  <div class="card character" draggable="true" data-name="isobel">
-    <img src="assets/img/isobel.png">
-    <span class="name">Isobel</span>
-  </div>
 </div>
 
 <script src="assets/js/app.js"></script>

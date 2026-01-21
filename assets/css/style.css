@@ -1,13 +1,89 @@
+/* ========================= */
+/*  ALGEMENE STYLING         */
+/* ========================= */
+
 body {
-  font-family: sans-serif;
-  padding: 20px;
-  background: #f5f5f5;
+  margin: 0;
+  background: #e8dcc2; /* beige */
+  font-family: "Cormorant Garamond", serif;
 }
 
+/* ========================= */
+/*  BOEK PAGINA'S            */
+/* ========================= */
+
+.book-screen {
+  position: fixed;
+  inset: 0;
+  background: #e8dcc2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.book-img {
+  width: 55vw;
+  max-width: 700px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Pagina 2–4 groter */
+#page2 .book-img,
+#page3 .book-img,
+#page4 .book-img {
+  width: 65vw;
+  max-width: 800px;
+}
+
+/* Tekst op rechterpagina */
+.text-overlay {
+  position: absolute;
+  right: 27%;
+  top: 15%;
+  max-width: 20%;
+  text-align: left;
+  color: #3a2a1a;
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+.text-overlay h1 a {
+  color: #3a2a1a;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+/* ========================= */
+/*  GAME                     */
+/* ========================= */
+
+#game.hidden {
+  display: none;
+}
+
+/* Alles in het midden */
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  min-height: 100vh;
+}
+
+/* Slots groot en gecentreerd */
 #slots {
   display: flex;
+  justify-content: center;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .slot {
@@ -18,8 +94,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
+/* Emoties boven scenes */
+.emotion {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  pointer-events: none;
+}
+
+/* SCENE GROOT */
 .card.scenario {
   width: 240px;
   height: 160px;
@@ -31,9 +119,56 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  pointer-events: none;
 }
 
+/* Characters klein */
+#characters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.card.character {
+  width: 60px;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card.character img {
+  width: 100%;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* Character instances in scenes */
+.character-instance {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.character-instance img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Namen */
+.name {
+  font-size: 12px;
+  margin-top: 2px;
+  color: #222;
+}
+
+.scene-instance .name {
+  font-size: 10px;
+  color: white;
+  text-shadow: 0 0 2px black;
+}
+
+/* People slots in scenes */
 .people {
   position: absolute;
   bottom: 10px;
@@ -53,54 +188,14 @@ body {
   justify-content: center;
 }
 
-#characters {
+/* Scenarios naast characters */
+#scenarios {
   display: flex;
+  justify-content: center;
   gap: 15px;
 }
 
-.card.character {
-  width: 60px;
-  cursor: grab;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card.character img {
-  width: 100%;
-  height: 80px;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.character-instance {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.character-instance img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.name {
-  font-size: 10px;
-  margin-top: 2px;
-  color: #222;
-}
-
-.scene-instance .name {
-  font-size: 9px;
-  color: white;
-  text-shadow: 0 0 2px black;
-}
-
-.scene-instance.success {
-  outline: 4px solid #4caf50;
-}
-
-.scene-instance.fail {
-  outline: 4px solid #f44336;
+/* Titels weg */
+h2 {
+  display: none;
 }

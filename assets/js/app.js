@@ -1,9 +1,72 @@
+/* ========================= */
+/*  BOEK PAGINA FLOW         */
+/* ========================= */
+
+const p1 = document.getElementById("page1");
+const p2 = document.getElementById("page2");
+const p3 = document.getElementById("page3");
+const p4 = document.getElementById("page4");
+const game = document.getElementById("game");
+
+p1.addEventListener("click", () => {
+  p1.classList.add("hidden");
+  p2.classList.remove("hidden");
+});
+
+p2.addEventListener("click", () => {
+  p2.classList.add("hidden");
+  p3.classList.remove("hidden");
+});
+
+p3.addEventListener("click", () => {
+  p3.classList.add("hidden");
+  p4.classList.remove("hidden");
+});
+
+document.getElementById("startGame").addEventListener("click", (e) => {
+  e.preventDefault();
+  p4.classList.add("hidden");
+  game.classList.remove("hidden");
+});
+
+/* ========================= */
+/*  EMOTIES                  */
+/* ========================= */
+
+function updateEmotion(scene) {
+  let old = scene.querySelector('.emotion');
+  if (old) old.remove();
+
+  const chars = scene.querySelectorAll('.character-instance');
+  if (chars.length !== 2) return;
+
+  const names = [...chars].map(c => c.dataset.name).sort().join('+');
+
+  let emotion = document.createElement('div');
+  emotion.classList.add('emotion');
+
+  const lovePairs = ['edgar+lenora', 'bernard+isobel'];
+  const brokenPairs = ['edgar+isobel', 'bernard+lenora'];
+
+  if (lovePairs.includes(names)) {
+    emotion.textContent = '❤️';
+  } else if (brokenPairs.includes(names)) {
+    emotion.textContent = '💔';
+  } else {
+    emotion.textContent = '💛';
+  }
+
+  scene.appendChild(emotion);
+}
+
+/* ========================= */
+/*  DRAG & DROP              */
+/* ========================= */
+
 let draggedItem = null;
 let draggedType = null;
+let solvedShown = false;
 
-/* =====================
-   DRAG START (delegated)
-===================== */
 document.addEventListener('dragstart', e => {
   const el = e.target.closest('.card, .scene-instance, .character-instance');
   if (!el) return;
@@ -17,9 +80,6 @@ document.addEventListener('dragstart', e => {
   }
 });
 
-/* =====================
-   SLOTS (scenes)
-===================== */
 document.querySelectorAll('.slot').forEach(slot => {
   slot.addEventListener('dragover', e => e.preventDefault());
 
@@ -29,11 +89,9 @@ document.querySelectorAll('.slot').forEach(slot => {
     let scene;
 
     if (draggedItem.classList.contains('scene-instance')) {
-      // verplaatsen
       scene = draggedItem;
       scene.parentElement.innerHTML = '';
     } else {
-      // clone van template
       scene = draggedItem.cloneNode(true);
       scene.classList.add('scene-instance');
       scene.removeAttribute('draggable');
@@ -43,12 +101,10 @@ document.querySelectorAll('.slot').forEach(slot => {
     slot.innerHTML = '';
     slot.appendChild(scene);
     checkStory();
+    updateEmotion(scene);
   });
 });
 
-/* =====================
-   SCENE LOGICA
-===================== */
 function enableScene(scene) {
   scene.addEventListener('dragover', e => e.preventDefault());
 
@@ -61,11 +117,9 @@ function enableScene(scene) {
     let character;
 
     if (draggedItem.classList.contains('character-instance')) {
-      // verplaatsen
       character = draggedItem;
       character.parentElement.innerHTML = '';
     } else {
-      // clone
       character = draggedItem.cloneNode(true);
       character.classList.remove('character');
       character.classList.add('character-instance');
@@ -74,12 +128,10 @@ function enableScene(scene) {
 
     emptySlot.appendChild(character);
     checkStory();
+    updateEmotion(scene);
   });
 }
 
-/* =====================
-   CHARACTER INSTANCE
-===================== */
 function enableCharacter(character) {
   character.setAttribute('draggable', 'true');
 
@@ -89,9 +141,6 @@ function enableCharacter(character) {
   });
 }
 
-/* =====================
-   CHARACTER BALK (verwijderen)
-===================== */
 const characterBar = document.getElementById('characters');
 characterBar.addEventListener('dragover', e => e.preventDefault());
 characterBar.addEventListener('drop', () => {
@@ -101,9 +150,6 @@ characterBar.addEventListener('drop', () => {
   }
 });
 
-/* =====================
-   SCENARIO BALK (verwijderen)
-===================== */
 const scenarioBar = document.getElementById('scenarios');
 scenarioBar.addEventListener('dragover', e => e.preventDefault());
 scenarioBar.addEventListener('drop', () => {
@@ -113,32 +159,50 @@ scenarioBar.addEventListener('drop', () => {
   }
 });
 
-/* =====================
-   STORY CHECK
-===================== */
-function checkStory() {
-  document.querySelectorAll('.scene-instance')
-    .forEach(scene => scene.classList.remove('success', 'fail'));
+/* ========================= */
+/*  LEVEL CHECK              */
+/* ========================= */
 
-  document.querySelectorAll('.slot').forEach((slot, index) => {
+function checkStory() {
+  const slots = document.querySelectorAll('.slot');
+  const currentSolution = [];
+
+  for (let slot of slots) {
     const scene = slot.querySelector('.scene-instance');
     if (!scene) return;
 
     const chars = scene.querySelectorAll('.character-instance');
-    if (chars.length < 2) return;
+    if (chars.length !== 2) return;
 
-    const names = [...chars].map(c => c.dataset.name);
+    const names = [...chars]
+      .map(c => c.dataset.name)
+      .sort();
 
-    if (index === 0 && names.includes('edgar') && names.includes('lenora')) {
-      scene.classList.add('success');
-    }
+    currentSolution.push(names.join('+'));
+  }
 
-    if (index === 1 && names.includes('bernard') && names.includes('lenora')) {
-      scene.classList.add('fail');
-    }
+  const validSolutions = [
+    ['edgar+lenora', 'edgar+isobel', 'bernard+isobel'],
+    ['edgar+lenora', 'bernard+lenora', 'bernard+isobel'],
+    ['edgar+isobel', 'edgar+lenora', 'bernard+lenora'],
+    ['edgar+isobel', 'bernard+isobel', 'bernard+lenora'],
+    ['bernard+lenora', 'bernard+isobel', 'edgar+isobel'],
+    ['bernard+lenora', 'edgar+lenora', 'edgar+isobel'],
+    ['bernard+isobel', 'bernard+lenora', 'edgar+lenora'],
+    ['bernard+isobel', 'edgar+isobel', 'edgar+lenora']
+  ].map(solution =>
+    solution.map(pair => pair.split('+').sort().join('+'))
+  );
 
-    if (index === 2 && names.includes('edgar') && names.includes('isobel')) {
-      scene.classList.add('success');
-    }
-  });
+  const solved = validSolutions.some(solution =>
+    solution.every((pair, index) => pair === currentSolution[index])
+  );
+
+  if (solved) showSolvedMessage();
+}
+
+function showSolvedMessage() {
+  if (solvedShown) return;
+  solvedShown = true;
+  alert('🎉 Level 1 opgelost!');
 }

@@ -94,9 +94,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-/* SCENE WEER GROOT */
+/* Emoties boven scenes */
+.emotion {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  pointer-events: none;
+}
+
+/* SCENE GROOT */
 .card.scenario {
   width: 240px;
   height: 160px;

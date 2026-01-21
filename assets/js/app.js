@@ -30,7 +30,37 @@ document.getElementById("startGame").addEventListener("click", (e) => {
 });
 
 /* ========================= */
-/*  DRAG & DROP (jouw code)  */
+/*  EMOTIES                  */
+/* ========================= */
+
+function updateEmotion(scene) {
+  let old = scene.querySelector('.emotion');
+  if (old) old.remove();
+
+  const chars = scene.querySelectorAll('.character-instance');
+  if (chars.length !== 2) return;
+
+  const names = [...chars].map(c => c.dataset.name).sort().join('+');
+
+  let emotion = document.createElement('div');
+  emotion.classList.add('emotion');
+
+  const lovePairs = ['edgar+lenora', 'bernard+isobel'];
+  const brokenPairs = ['edgar+isobel', 'bernard+lenora'];
+
+  if (lovePairs.includes(names)) {
+    emotion.textContent = '❤️';
+  } else if (brokenPairs.includes(names)) {
+    emotion.textContent = '💔';
+  } else {
+    emotion.textContent = '💛';
+  }
+
+  scene.appendChild(emotion);
+}
+
+/* ========================= */
+/*  DRAG & DROP              */
 /* ========================= */
 
 let draggedItem = null;
@@ -71,6 +101,7 @@ document.querySelectorAll('.slot').forEach(slot => {
     slot.innerHTML = '';
     slot.appendChild(scene);
     checkStory();
+    updateEmotion(scene);
   });
 });
 
@@ -97,6 +128,7 @@ function enableScene(scene) {
 
     emptySlot.appendChild(character);
     checkStory();
+    updateEmotion(scene);
   });
 }
 
@@ -126,6 +158,10 @@ scenarioBar.addEventListener('drop', () => {
     checkStory();
   }
 });
+
+/* ========================= */
+/*  LEVEL CHECK              */
+/* ========================= */
 
 function checkStory() {
   const slots = document.querySelectorAll('.slot');

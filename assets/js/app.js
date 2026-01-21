@@ -1,7 +1,4 @@
-/* ========================= */
-/*  BOEK PAGINA FLOW         */
-/* ========================= */
-
+/*BOEK PAGINA FLOW*/
 const p1 = document.getElementById("page1");
 const p2 = document.getElementById("page2");
 const p3 = document.getElementById("page3");
@@ -29,10 +26,8 @@ document.getElementById("startGame").addEventListener("click", (e) => {
   game.classList.remove("hidden");
 });
 
-/* ========================= */
-/*  EMOTIES                  */
-/* ========================= */
 
+/*EMOTIES*/
 function updateEmotion(scene) {
   let old = scene.querySelector('.emotion');
   if (old) old.remove();
@@ -59,10 +54,8 @@ function updateEmotion(scene) {
   scene.appendChild(emotion);
 }
 
-/* ========================= */
-/*  DRAG & DROP              */
-/* ========================= */
 
+/*DRAG & DROP*/
 let draggedItem = null;
 let draggedType = null;
 let solvedShown = false;
@@ -159,10 +152,8 @@ scenarioBar.addEventListener('drop', () => {
   }
 });
 
-/* ========================= */
-/*  LEVEL CHECK              */
-/* ========================= */
 
+/*LEVEL CHECK*/
 function checkStory() {
   const slots = document.querySelectorAll('.slot');
   const currentSolution = [];

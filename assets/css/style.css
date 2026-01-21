@@ -1,17 +1,12 @@
-/* ========================= */
-/*  ALGEMENE STYLING         */
-/* ========================= */
-
+/*ALGEMENE STYLING*/
 body {
   margin: 0;
   background: #e8dcc2; /* beige */
   font-family: "Cormorant Garamond", serif;
 }
 
-/* ========================= */
-/*  BOEK PAGINA'S            */
-/* ========================= */
 
+/*BOEK PAGINA'S*/
 .book-screen {
   position: fixed;
   inset: 0;
@@ -60,10 +55,8 @@ body {
   font-size: 28px;
 }
 
-/* ========================= */
-/*  GAME                     */
-/* ========================= */
 
+/*GAME*/
 #game.hidden {
   display: none;
 }

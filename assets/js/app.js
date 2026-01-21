@@ -1,10 +1,42 @@
+/* ========================= */
+/*  BOEK PAGINA FLOW         */
+/* ========================= */
+
+const p1 = document.getElementById("page1");
+const p2 = document.getElementById("page2");
+const p3 = document.getElementById("page3");
+const p4 = document.getElementById("page4");
+const game = document.getElementById("game");
+
+p1.addEventListener("click", () => {
+  p1.classList.add("hidden");
+  p2.classList.remove("hidden");
+});
+
+p2.addEventListener("click", () => {
+  p2.classList.add("hidden");
+  p3.classList.remove("hidden");
+});
+
+p3.addEventListener("click", () => {
+  p3.classList.add("hidden");
+  p4.classList.remove("hidden");
+});
+
+document.getElementById("startGame").addEventListener("click", (e) => {
+  e.preventDefault();
+  p4.classList.add("hidden");
+  game.classList.remove("hidden");
+});
+
+/* ========================= */
+/*  DRAG & DROP (jouw code)  */
+/* ========================= */
+
 let draggedItem = null;
 let draggedType = null;
 let solvedShown = false;
 
-/* =====================
-   DRAG START (delegated)
-===================== */
 document.addEventListener('dragstart', e => {
   const el = e.target.closest('.card, .scene-instance, .character-instance');
   if (!el) return;
@@ -18,9 +50,6 @@ document.addEventListener('dragstart', e => {
   }
 });
 
-/* =====================
-   SLOTS (scenes plaatsen)
-===================== */
 document.querySelectorAll('.slot').forEach(slot => {
   slot.addEventListener('dragover', e => e.preventDefault());
 
@@ -30,11 +59,9 @@ document.querySelectorAll('.slot').forEach(slot => {
     let scene;
 
     if (draggedItem.classList.contains('scene-instance')) {
-      // scene verplaatsen
       scene = draggedItem;
       scene.parentElement.innerHTML = '';
     } else {
-      // scene clonen vanuit balk
       scene = draggedItem.cloneNode(true);
       scene.classList.add('scene-instance');
       scene.removeAttribute('draggable');
@@ -47,9 +74,6 @@ document.querySelectorAll('.slot').forEach(slot => {
   });
 });
 
-/* =====================
-   SCENE LOGICA
-===================== */
 function enableScene(scene) {
   scene.addEventListener('dragover', e => e.preventDefault());
 
@@ -62,11 +86,9 @@ function enableScene(scene) {
     let character;
 
     if (draggedItem.classList.contains('character-instance')) {
-      // character verplaatsen
       character = draggedItem;
       character.parentElement.innerHTML = '';
     } else {
-      // character clonen vanuit balk
       character = draggedItem.cloneNode(true);
       character.classList.remove('character');
       character.classList.add('character-instance');
@@ -78,9 +100,6 @@ function enableScene(scene) {
   });
 }
 
-/* =====================
-   CHARACTER INSTANCE
-===================== */
 function enableCharacter(character) {
   character.setAttribute('draggable', 'true');
 
@@ -90,9 +109,6 @@ function enableCharacter(character) {
   });
 }
 
-/* =====================
-   CHARACTER BALK = VERWIJDEREN
-===================== */
 const characterBar = document.getElementById('characters');
 characterBar.addEventListener('dragover', e => e.preventDefault());
 characterBar.addEventListener('drop', () => {
@@ -102,9 +118,6 @@ characterBar.addEventListener('drop', () => {
   }
 });
 
-/* =====================
-   SCENARIO BALK = VERWIJDEREN
-===================== */
 const scenarioBar = document.getElementById('scenarios');
 scenarioBar.addEventListener('dragover', e => e.preventDefault());
 scenarioBar.addEventListener('drop', () => {
@@ -114,9 +127,6 @@ scenarioBar.addEventListener('drop', () => {
   }
 });
 
-/* =====================
-   LEVEL CHECK (8 oplossingen)
-===================== */
 function checkStory() {
   const slots = document.querySelectorAll('.slot');
   const currentSolution = [];
@@ -155,9 +165,6 @@ function checkStory() {
   if (solved) showSolvedMessage();
 }
 
-/* =====================
-   MELDING
-===================== */
 function showSolvedMessage() {
   if (solvedShown) return;
   solvedShown = true;

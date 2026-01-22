@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyclic, Mutually Toxic Love Affair</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Game 2 CSS -->
+  <link rel="stylesheet" href="assets/css/storyteller.css">
+</head>
+<body>
+
+  <h1>Cyclic, Mutually Toxic Love Affair</h1>
+
+  <div id="game">
+
+    <!-- 6 STORY SLOTS -->
+    <div id="slots">
+      <div class="slot"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+      <div class="slot"></div>
+    </div>
+
+    <!-- SCENES -->
+    <div id="scenarios">
+      <div class="card scenario" draggable="true" data-type="wedding">
+        <img src="assets/img/wedding.png">
+        <div class="people">
+          <div class="person-slot"></div>
+          <div class="person-slot"></div>
+        </div>
+      </div>
+
+      <div class="card scenario" draggable="true" data-type="fight">
+        <img src="assets/img/vecht.png">
+        <div class="people">
+          <div class="person-slot"></div>
+          <div class="person-slot"></div>
+        </div>
+      </div>
+
+      <div class="card scenario" draggable="true" data-type="amnesia">
+        <img src="assets/img/vergeet.png">
+        <div class="people">
+          <div class="person-slot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARACTERS -->
+    <div id="characters">
+      <div class="card character" draggable="true" data-name="edgar">
+        <img src="assets/img/edgar.png">
+        <span class="name">Edgar</span>
+      </div>
+
+      <div class="card character" draggable="true" data-name="lenora">
+        <img src="assets/img/lenora.png">
+        <span class="name">Lenora</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Game 2 JS -->
+  <script src="assets/js/storyteller.js"></script>
+</body>
+</html>

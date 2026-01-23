@@ -12,6 +12,7 @@ https://trello.com/b/hbxhJDvH/2d-game-module-62
 # (feedback: er is geen uitleg over het spel) heb een uitleg pagina gemaakt over wat en hoe je het spel moet spelen. 
 # (was geen thema) heb alle personages een kerst muts gegeven en de scene kerk allemaal kerstlampjes. 
 # (je weet niet zo goed wanneer je iets goed doet omdat je geen feedback krijgt in het spel) heb emoties toegevoegd. dus als bij level 1 er 2 verlieft worden krijgen zij een hartje boven hun hoofd en ook bij een gebroken hart. en een geel hartje voor de vriendschap. 
+# als laatst een verbeter puntje van mezelf. ik wilde nog een extra level! dus dit heb ik toegevoegd
 
 
 - standup 
@@ -63,3 +64,15 @@ gedaan: alle 8 de oplossingen bedacht en uitgeschreven. winter thema bedacht. al
 liep vast op: winter thema toevoegen is niet zo makkelijk als ik dacht.
 Ga doen: personages erin zetten. een begin scherm maken.
 gedaan: scene ook kerst achtig maken. personages erin gezet. en het begin van een boek gemaakt met daarin ook uitleg over hoe of wat je moet doen. 
+
+donderdag 22 januari: 
+gedaan: scene ook kerst achtig maken. personages erin gezet. en het begin van een boek gemaakt met daarin ook uitleg over hoe of wat je moet doen.  
+liep vast op: boek mooi laten omslaan. dat lukte niet en werd daar heel gefrustreerd van. daar heb ik bijna heel de dag aan besteed en ik vond het super lelijk, dus ik heb het weggehaald en maar gewoon doorklikken gedaan. 
+Ga doen: level 2 maken
+gedaan: Heb een level 2 gemaakt voor de game. een niet al te moeilijk level met extra scenes en 2 oplossingen. 
+
+vrijdag 23 januari: 
+gedaan: Heb een level 2 gemaakt voor de game. een niet al te moeilijk level met extra scenes en 2 oplossingen.  
+liep vast op: wilde alles in 1 index maken maar elke keer verwijderde mijn andere level daardoor, dus uiteindelijk alles weer verwijderd om opniew aan level 2 te beginnen in een apparte file. 
+Ga doen: project laten zien en inleveren
+gedaan: project laten zien en inleveren

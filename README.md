@@ -8,11 +8,21 @@ https://trello.com/b/hbxhJDvH/2d-game-module-62
 
 - feedback van klasgenoten verwerkt 
 
+(feedback van 2 personen staat in mapje docs)
 # alle 8 de oplossingen erin zetten (feedback: 1 oplossing werkt maar is lastig te vinden)
 # (feedback: er is geen uitleg over het spel) heb een uitleg pagina gemaakt over wat en hoe je het spel moet spelen. 
 # (was geen thema) heb alle personages een kerst muts gegeven en de scene kerk allemaal kerstlampjes. 
 # (je weet niet zo goed wanneer je iets goed doet omdat je geen feedback krijgt in het spel) heb emoties toegevoegd. dus als bij level 1 er 2 verlieft worden krijgen zij een hartje boven hun hoofd en ook bij een gebroken hart. en een geel hartje voor de vriendschap. 
 # als laatst een verbeter puntje van mezelf. ik wilde nog een extra level! dus dit heb ik toegevoegd
+
+(feedback van iedereen staat in mapje docs)
+wat ik wel ga verwerken: 
+# 1 taal maken (engels)
+# terug menu maken 
+
+wat ik niet ga verwerken 
+# "onduidelijk" want er staat een uitleg op de 3e pagina alleen hebben zij hier niet naar gekeken
+# de rest van de feedback is niet te lezen
 
 
 - standup 
@@ -76,3 +86,9 @@ gedaan: Heb een level 2 gemaakt voor de game. een niet al te moeilijk level met 
 liep vast op: wilde alles in 1 index maken maar elke keer verwijderde mijn andere level daardoor, dus uiteindelijk alles weer verwijderd om opniew aan level 2 te beginnen in een apparte file. 
 Ga doen: project laten zien en inleveren
 gedaan: project laten zien en inleveren
+
+maandag 26 januari: 
+gedaan: project presenteren
+liep vast op: niks
+Ga doen: feedback verzamelen en alles 1 taal maken
+gedaan: 

@@ -24,6 +24,8 @@ wat ik niet ga verwerken
 # "onduidelijk" want er staat een uitleg op de 3e pagina alleen hebben zij hier niet naar gekeken
 # de rest van de feedback is niet te lezen
 
+Ik wilde het terug menu wel maken, maar hier had ik geen tijd meer voor, omdat ik voor de expo een ander project wil laten zien waarmee ik nog wat dingen moest aanpassen. Hierdoor had ik geen tijd meer om het terug menu te maken.  
+
 
 - standup 
 
@@ -91,4 +93,10 @@ maandag 26 januari:
 gedaan: project presenteren
 liep vast op: niks
 Ga doen: feedback verzamelen en alles 1 taal maken
-gedaan: 
+gedaan: Alle feedback in 1 map zetten en in mapje docs op mijn github gezet. Ook heb ik de game engels gemaakt. Verder heb ik 2 poosters gemaakt voor de expo
+
+dinsdag 27 januari: 
+gedaan: Alle feedback in 1 map zetten en in mapje docs op mijn github gezet. Ook heb ik de game engels gemaakt. Verder heb ik 2 poosters gemaakt voor de expo
+liep vast op: kon terug menu niet meer maken door gebrek aan tijd
+Ga doen: inleveren op e-Journal
+gedaan: inleveren op e-Journal
